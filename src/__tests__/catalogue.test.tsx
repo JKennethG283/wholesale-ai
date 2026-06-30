@@ -67,6 +67,24 @@ describe("product catalogue browsing", () => {
     expect(within(paleAleCard).getByText(/Similar: Ridgeway Clean Lager/i)).toBeInTheDocument();
   });
 
+  it("hides empty category sections so filtered results stay scannable", () => {
+    render(<CataloguePage />);
+
+    fireEvent.change(screen.getByLabelText("Search products"), {
+      target: { value: "coastal gin" },
+    });
+
+    expect(
+      screen.getByRole("heading", { name: "Spirits" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "Beer" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/No visible products in this category/i),
+    ).not.toBeInTheDocument();
+  });
+
   it("lets buyers search, combine filters, and recover from empty results", () => {
     render(<CataloguePage />);
 

@@ -165,10 +165,12 @@ export function CatalogueBrowser() {
   };
 
   const visibleProducts = filterCatalogueProducts(products, filters);
-  const visibleByCategory = catalogueCategories.map((catalogueCategory) => ({
-    category: catalogueCategory,
-    products: visibleProducts.filter((product) => product.category === catalogueCategory),
-  }));
+  const visibleByCategory = catalogueCategories
+    .map((catalogueCategory) => ({
+      category: catalogueCategory,
+      products: visibleProducts.filter((product) => product.category === catalogueCategory),
+    }))
+    .filter((group) => group.products.length > 0);
 
   function clearFilters() {
     setSearch("");
@@ -349,15 +351,11 @@ export function CatalogueBrowser() {
                   <span>{categoryProducts.length} visible</span>
                 </div>
 
-                {categoryProducts.length > 0 ? (
-                  <div className="catalogue-card-grid">
-                    {categoryProducts.map((product) => (
-                      <ProductCard key={product.id} product={product} onAddToCart={addToCart} />
-                    ))}
-                  </div>
-                ) : (
-                  <p className="category-empty">No visible products in this category for the current filters.</p>
-                )}
+                <div className="catalogue-card-grid">
+                  {categoryProducts.map((product) => (
+                    <ProductCard key={product.id} product={product} onAddToCart={addToCart} />
+                  ))}
+                </div>
               </section>
               );
             })}

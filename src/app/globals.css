@@ -594,7 +594,6 @@ h1 {
 }
 
 .category-section-heading p,
-.category-empty,
 .empty-state p {
   margin: 8px 0 0;
   color: var(--ink-soft);
@@ -2326,5 +2325,41 @@ h1 {
   .hbar-row {
     grid-template-columns: 1fr;
     gap: 4px;
+  }
+}
+
+/* Visual QA refinements (#12): accessible motion + mobile-safe nav and tables */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .primary-nav {
+    flex-wrap: nowrap;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .primary-nav a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .admin-table,
+  .data-table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
   }
 }
