@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { RotateCcw, Search, SlidersHorizontal } from "lucide-react";
+import { RotateCcw, Search, ShoppingCart, SlidersHorizontal } from "lucide-react";
 import { useMemo, useState } from "react";
 import {
   filterCatalogueProducts,
@@ -11,6 +11,8 @@ import {
 } from "@/lib/catalogue";
 import { catalogueCategories, products, regions } from "@/lib/mock-data";
 import { navigationItems } from "@/lib/navigation";
+
+const cartStorageKey = "liquorops-cart";
 
 const priceOptions = [
   { label: "Any price", value: "" },
@@ -43,7 +45,30 @@ function getCategoryHeadingId(category: string) {
   return `category-${category.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 }
 
-function ProductCard({ product }: { product: CatalogueProduct }) {
+function readStoredCart(): Array<{ productId: string; quantity: number }> {
+  if (typeof window === "undefined") {
+    return [];
+  }
+
+  try {
+    const storedCart = window.localStorage.getItem(cartStorageKey);
+    return storedCart ? JSON.parse(storedCart) : [];
+  } catch {
+    return [];
+  }
+}
+
+function writeStoredCart(items: Array<{ productId: string; quantity: number }>) {
+  window.localStorage.setItem(cartStorageKey, JSON.stringify(items));
+}
+
+function ProductCard({
+  product,
+  onAddToCart,
+}: {
+  product: CatalogueProduct;
+  onAddToCart: (product: CatalogueProduct) => void;
+}) {
   const stockStatus = getStockStatus(product.stock);
   const similarProductNames = getSimilarProductNames(product);
 
@@ -102,6 +127,17 @@ function ProductCard({ product }: { product: CatalogueProduct }) {
         {similarProductNames ? (
           <p className="similar-products">Similar: {similarProductNames}</p>
         ) : null}
+
+        <button
+          className="add-to-cart-button"
+          type="button"
+          onClick={() => onAddToCart(product)}
+          disabled={product.stock <= 0}
+          aria-label={`Add ${product.name} to cart`}
+        >
+          <ShoppingCart aria-hidden="true" size={16} />
+          {product.stock <= 0 ? "Out of stock" : "Add"}
+        </button>
       </div>
     </article>
   );
@@ -113,6 +149,7 @@ export function CatalogueBrowser() {
   const [subcategory, setSubcategory] = useState("");
   const [region, setRegion] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+  const [cartMessage, setCartMessage] = useState("");
 
   const availableSubcategories = useMemo(
     () => (category ? getSubcategories(category) : allSubcategories),
@@ -139,6 +176,21 @@ export function CatalogueBrowser() {
     setSubcategory("");
     setRegion("");
     setMaxPrice("");
+  }
+
+  function addToCart(product: CatalogueProduct) {
+    const storedCart = readStoredCart();
+    const existingItem = storedCart.find((item) => item.productId === product.id);
+    const updatedCart = existingItem
+      ? storedCart.map((item) =>
+          item.productId === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item,
+        )
+      : [...storedCart, { productId: product.id, quantity: 1 }];
+
+    writeStoredCart(updatedCart);
+    setCartMessage(`${product.name} added to cart.`);
   }
 
   return (
@@ -269,6 +321,11 @@ export function CatalogueBrowser() {
         <p className="results-summary" aria-live="polite">
           Showing {visibleProducts.length} of {products.length} synthetic wholesale products.
         </p>
+        {cartMessage ? (
+          <p className="cart-toast" aria-live="polite">
+            {cartMessage}
+          </p>
+        ) : null}
 
         {visibleProducts.length === 0 ? (
           <section className="empty-state" aria-live="polite">
@@ -295,7 +352,7 @@ export function CatalogueBrowser() {
                 {categoryProducts.length > 0 ? (
                   <div className="catalogue-card-grid">
                     {categoryProducts.map((product) => (
-                      <ProductCard key={product.id} product={product} />
+                      <ProductCard key={product.id} product={product} onAddToCart={addToCart} />
                     ))}
                   </div>
                 ) : (
