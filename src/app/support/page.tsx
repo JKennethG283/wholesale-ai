@@ -1,10 +1,5 @@
-import { PlaceholderPage } from "@/components/placeholder-page";
+import { SupportAutomation } from "@/components/support-automation";
 
 export default function SupportPage() {
-  return (
-    <PlaceholderPage
-      title="Support Automation"
-      summary="Issue classification, ticket creation, team routing, and response drafts will land here."
-    />
-  );
+  return <SupportAutomation />;
 }
