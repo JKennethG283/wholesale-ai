@@ -72,6 +72,15 @@ export function AdminDashboard() {
           </div>
         </section>
 
+        <div className="ai-insight" role="note" aria-label="AI insight">
+          <Sparkles size={18} aria-hidden="true" />
+          <p>
+            These panels are powered by the same <strong>AI workflow system</strong> driving
+            ordering, recommendations, and support — every order and automation event feeds the
+            demand, stock-risk, and weekly-report intelligence below.
+          </p>
+        </div>
+
         <div className="admin-grid">
           <section className="admin-card" role="region" aria-label="Top buyers">
             <h2>Top buyers</h2>

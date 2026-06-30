@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { catalogueCategories, customers, products, regions } from "@/lib/mock-data";
-import { architectureLayers, navigationItems } from "@/lib/navigation";
-
-const complianceDisclaimer =
-  "Demo only. Uses synthetic data. A real production system would require liquor licensing, age verification, responsible service of alcohol controls, and state-based delivery compliance.";
+import {
+  architectureLayers,
+  complianceDisclaimer,
+  navigationItems,
+} from "@/lib/navigation";
 
 export default function HomePage() {
   const featuredProducts = products.slice(0, 4);
@@ -91,6 +92,15 @@ export default function HomePage() {
             </div>
           </aside>
         </section>
+
+        <div className="ai-insight" role="note" aria-label="AI insight">
+          <span aria-hidden="true">✦</span>
+          <p>
+            LiquorOps AI is an <strong>AI workflow system</strong>, not just an AI chatbot —
+            recommendations, reorder prediction, support automation, email drafting, and reporting
+            run on one shared data set and trigger connected automations.
+          </p>
+        </div>
 
         <section className="section-grid" aria-label="Catalogue and architecture summary">
           <div className="section-panel">

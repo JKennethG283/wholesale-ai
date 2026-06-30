@@ -11,6 +11,36 @@ export const navigationItems = [
   { label: "Architecture", href: "/architecture" },
 ] as const;
 
+export const complianceDisclaimer =
+  "Demo only. Uses synthetic data. A real production system would require liquor licensing, age verification, responsible service of alcohol controls, and state-based delivery compliance.";
+
+export const demoStorySteps = [
+  {
+    step: "Browse the catalogue",
+    detail: "A buyer filters live-style stock and reviews AI product picks.",
+  },
+  {
+    step: "Add recommended products",
+    detail: "Hybrid search and reorder signals suggest what to add to the order.",
+  },
+  {
+    step: "Submit the order",
+    detail: "Cart pricing and stock validation produce a simulated order submission.",
+  },
+  {
+    step: "Stock updates & email draft",
+    detail: "Inventory is decremented and a confirmation email draft is generated.",
+  },
+  {
+    step: "Workflow log entries appear",
+    detail: "Order, stock, email, and n8n webhook automations are recorded.",
+  },
+  {
+    step: "Admin dashboard reflects impact",
+    detail: "Demand, stock risk, and the weekly report update for the wholesaler.",
+  },
+] as const;
+
 export const architectureLayers = [
   {
     name: "Frontend",
