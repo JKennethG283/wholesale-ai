@@ -1,10 +1,5 @@
-import { PlaceholderPage } from "@/components/placeholder-page";
+import { CatalogueBrowser } from "@/components/catalogue-browser";
 
 export default function CataloguePage() {
-  return (
-    <PlaceholderPage
-      title="Catalogue"
-      summary="Product browsing, category sections, stock states, and wholesale filters start here."
-    />
-  );
+  return <CatalogueBrowser />;
 }
