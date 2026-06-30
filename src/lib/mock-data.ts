@@ -441,8 +441,52 @@ export const orders = [
   {
     id: "ord-1001",
     customerId: "cust-bar-88",
+    date: "2026-04-12",
     status: "Delivered",
-    total: 2840,
+    total: 886,
+    lines: [
+      { productId: "prod-ridge-lager", quantity: 12, unitPrice: 48 },
+      { productId: "prod-tonic", quantity: 10, unitPrice: 31 },
+    ],
+  },
+  {
+    id: "ord-1002",
+    customerId: "cust-bar-88",
+    date: "2026-05-11",
+    status: "Delivered",
+    total: 1512,
+    lines: [
+      { productId: "prod-bayline-pale", quantity: 18, unitPrice: 52 },
+      { productId: "prod-harbour-ipa", quantity: 8, unitPrice: 72 },
+    ],
+  },
+  {
+    id: "ord-1003",
+    customerId: "cust-bar-88",
+    date: "2026-06-09",
+    status: "Delivered",
+    total: 2874,
+    lines: [
+      { productId: "prod-bayline-pale", quantity: 24, unitPrice: 52 },
+      { productId: "prod-citrus-rtd", quantity: 12, unitPrice: 58 },
+      { productId: "prod-tonic", quantity: 30, unitPrice: 31 },
+    ],
+  },
+  {
+    id: "ord-2001",
+    customerId: "cust-carlton-wine",
+    date: "2026-05-20",
+    status: "Delivered",
+    total: 1656,
+    lines: [{ productId: "prod-carlton-pinot", quantity: 12, unitPrice: 138 }],
+  },
+  {
+    id: "ord-2002",
+    customerId: "cust-carlton-wine",
+    date: "2026-06-18",
+    status: "Processing",
+    total: 1416,
+    lines: [{ productId: "prod-new-sauv", quantity: 12, unitPrice: 118 }],
   },
 ] as const;
 
@@ -453,12 +497,13 @@ export const inventory = products.map((product) => ({
 }));
 
 export const posSales = [
-  {
-    id: "pos-001",
-    customerId: "cust-bar-88",
-    productId: "prod-bayline-pale",
-    weeklyUnits: 44,
-  },
+  { id: "pos-001", customerId: "cust-bar-88", productId: "prod-bayline-pale", weeklyUnits: 6 },
+  { id: "pos-002", customerId: "cust-bar-88", productId: "prod-citrus-rtd", weeklyUnits: 5 },
+  { id: "pos-003", customerId: "cust-bar-88", productId: "prod-ridge-lager", weeklyUnits: 4 },
+  { id: "pos-004", customerId: "cust-bar-88", productId: "prod-harbour-ipa", weeklyUnits: 3 },
+  { id: "pos-005", customerId: "cust-bar-88", productId: "prod-tonic", weeklyUnits: 2 },
+  { id: "pos-006", customerId: "cust-carlton-wine", productId: "prod-carlton-pinot", weeklyUnits: 3 },
+  { id: "pos-007", customerId: "cust-carlton-wine", productId: "prod-new-sauv", weeklyUnits: 2 },
 ] as const;
 
 export const supportTickets = [
