@@ -1,10 +1,5 @@
-import { PlaceholderPage } from "@/components/placeholder-page";
+import { AdminDashboard } from "@/components/admin-dashboard";
 
 export default function AdminPage() {
-  return (
-    <PlaceholderPage
-      title="Admin Dashboard"
-      summary="Wholesaler sales, stock risk, customer issues, and weekly reporting will land here."
-    />
-  );
+  return <AdminDashboard />;
 }
