@@ -22,6 +22,21 @@ export default function HomePage() {
               operational workflows.
             </p>
 
+            <div className="home-stats-strip" aria-label="Operating snapshot">
+              <span>
+                <strong>{products.length}</strong>
+                Product lines
+              </span>
+              <span>
+                <strong>{customers.length}</strong>
+                Buyer accounts
+              </span>
+              <span>
+                <strong>{regions.length}</strong>
+                Sales regions
+              </span>
+            </div>
+
             <div className="role-grid" aria-label="Role entry">
               <Link className="role-card" href="/catalogue" aria-label="Buyer / venue owner">
                 <strong>Buyer / venue owner</strong>
@@ -38,6 +53,15 @@ export default function HomePage() {
             <div className="ops-panel-header">
               <strong>Wholesale catalogue console</strong>
               <span>{products.length} synthetic lines</span>
+            </div>
+            <div className="ops-chart" aria-hidden="true">
+              <span style={{ height: "46%" }} />
+              <span style={{ height: "70%" }} />
+              <span style={{ height: "54%" }} />
+              <span style={{ height: "82%" }} />
+              <span style={{ height: "62%" }} />
+              <span style={{ height: "92%" }} />
+              <span style={{ height: "76%" }} />
             </div>
             <div className="filter-strip">
               <div>

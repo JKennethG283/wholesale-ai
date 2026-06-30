@@ -5,12 +5,15 @@ import { usePathname } from "next/navigation";
 import { useState, type ReactNode } from "react";
 import {
   BarChart3,
+  Bell,
   Bot,
+  ChevronDown,
   Gauge,
   LifeBuoy,
   Menu,
   Network,
   ScanLine,
+  Search,
   ShoppingCart,
   Sparkles,
   Wine,
@@ -121,7 +124,18 @@ export function AppShell({ children }: { children: ReactNode }) {
             <span className="sidebar-mark">LO</span>
             <strong>LiquorOps AI</strong>
           </Link>
+          <div className="topbar-search" role="search">
+            <Search size={16} aria-hidden="true" />
+            <span>Search orders, buyers, products</span>
+          </div>
           <span className="topbar-chip">Prototype · synthetic data</span>
+          <button type="button" className="topbar-icon-button" aria-label="Notifications">
+            <Bell size={17} aria-hidden="true" />
+          </button>
+          <button type="button" className="topbar-account" aria-label="Open account menu">
+            <span>Ops</span>
+            <ChevronDown size={15} aria-hidden="true" />
+          </button>
         </header>
 
         {children}
