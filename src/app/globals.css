@@ -1,22 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f6f7f4;
-  --foreground: #14201c;
+  --background: #eef2f5;
+  --foreground: #0d1a14;
   --panel: #ffffff;
-  --panel-muted: #eef3ef;
-  --ink-soft: #596962;
-  --cellar: #17483b;
-  --cellar-2: #256451;
+  --panel-muted: #eef3f0;
+  --ink-soft: #5a6a64;
+  --cellar: #0e5a3e;
+  --cellar-2: #15a06a;
   --copper: #b87333;
-  --limewash: #dbe7d8;
-  --line: #d8dfd8;
-  --danger: #9f3a36;
+  --limewash: #dcefe5;
+  --line: #e3e8ec;
+  --danger: #b23a34;
+  --radius: 14px;
+  --radius-sm: 10px;
+  --shadow-sm: 0 1px 2px rgba(13, 26, 20, 0.05), 0 1px 3px rgba(13, 26, 20, 0.05);
+  --shadow-md: 0 8px 22px rgba(13, 26, 20, 0.06), 0 2px 8px rgba(13, 26, 20, 0.04);
+  --shadow-lg: 0 22px 60px rgba(13, 26, 20, 0.1);
 }
 
 @theme inline {
-  --color-background: #f6f7f4;
-  --color-foreground: #14201c;
+  --color-background: #eef2f5;
+  --color-foreground: #0d1a14;
   --font-sans: "Aptos", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Cascadia Mono", "SFMono-Regular", ui-monospace, monospace;
 }
@@ -28,7 +33,7 @@
 body {
   margin: 0;
   background:
-    linear-gradient(90deg, rgba(23, 72, 59, 0.04) 1px, transparent 1px) 0 0 / 36px 36px,
+    radial-gradient(1200px 520px at 50% -240px, rgba(21, 160, 106, 0.07), transparent 70%),
     var(--background);
   color: var(--foreground);
   font-family: "Aptos", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
@@ -40,7 +45,7 @@ a {
 }
 
 :focus-visible {
-  outline: 3px solid rgba(184, 115, 51, 0.75);
+  outline: 3px solid rgba(21, 160, 106, 0.6);
   outline-offset: 3px;
 }
 
@@ -53,7 +58,7 @@ a {
   top: 0;
   z-index: 20;
   border-bottom: 1px solid var(--line);
-  background: rgba(246, 247, 244, 0.92);
+  background: rgba(244, 247, 249, 0.82);
   backdrop-filter: blur(14px);
 }
 
@@ -137,9 +142,9 @@ a {
 .category-chip,
 .placeholder-panel {
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--radius);
   background: var(--panel);
-  box-shadow: 0 16px 50px rgba(20, 32, 28, 0.06);
+  box-shadow: var(--shadow-md);
 }
 
 .hero-copy {
@@ -421,18 +426,21 @@ h1 {
   min-height: 78px;
   align-content: center;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--radius);
   background: #fff;
+  box-shadow: var(--shadow-sm);
   color: var(--ink-soft);
   font-size: 12px;
   font-weight: 700;
-  padding: 14px;
+  padding: 14px 16px;
   text-transform: uppercase;
 }
 
 .catalogue-metrics strong {
-  color: var(--cellar);
-  font-size: 28px;
+  color: var(--foreground);
+  font-size: 30px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
   line-height: 1;
 }
 
@@ -446,10 +454,10 @@ h1 {
   z-index: 10;
   margin: 18px 0 12px;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--radius);
   background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 14px 45px rgba(20, 32, 28, 0.08);
-  padding: 12px;
+  box-shadow: var(--shadow-md);
+  padding: 14px;
 }
 
 .toolbar-heading {
@@ -528,15 +536,24 @@ h1 {
   justify-content: center;
   gap: 7px;
   min-height: 40px;
-  border: 1px solid rgba(23, 72, 59, 0.28);
-  border-radius: 6px;
-  background: var(--cellar);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: var(--cellar-2);
+  box-shadow: 0 6px 16px rgba(21, 160, 106, 0.24);
   color: #fff;
   cursor: pointer;
   font: inherit;
   font-size: 14px;
   font-weight: 800;
-  padding: 0 13px;
+  padding: 0 14px;
+  transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease;
+}
+
+.add-to-cart-button:hover:not(:disabled),
+.submit-order-button:hover:not(:disabled) {
+  background: #128a5b;
+  box-shadow: 0 10px 22px rgba(21, 160, 106, 0.3);
+  transform: translateY(-1px);
 }
 
 .add-to-cart-button {
@@ -623,10 +640,16 @@ h1 {
   gap: 16px;
   min-height: 360px;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--radius);
   background: #fff;
-  box-shadow: 0 12px 35px rgba(20, 32, 28, 0.06);
-  padding: 14px;
+  box-shadow: var(--shadow-sm);
+  padding: 16px;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.catalogue-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
 .product-visual {
@@ -828,9 +851,9 @@ h1 {
 
 .cart-panel {
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--radius);
   background: #fff;
-  box-shadow: 0 12px 35px rgba(20, 32, 28, 0.06);
+  box-shadow: var(--shadow-md);
   padding: 18px;
 }
 
@@ -1193,26 +1216,31 @@ h1 {
 
 .kpi-card {
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: var(--radius);
   background: var(--panel);
-  padding: 16px 18px;
+  box-shadow: var(--shadow-sm);
+  padding: 18px 20px;
 }
 
 .kpi-card span {
   color: var(--ink-soft);
   font-size: 12px;
   font-weight: 800;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
 }
 
 .kpi-card strong {
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin: 8px 0 4px;
-  color: var(--cellar);
-  font-size: 30px;
-  line-height: 1.1;
+  gap: 8px;
+  margin: 10px 0 4px;
+  color: var(--foreground);
+  font-size: 34px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
 }
 
 .kpi-card p {
@@ -1237,8 +1265,9 @@ h1 {
 
 .dashboard-panel {
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: var(--radius);
   background: var(--panel);
+  box-shadow: var(--shadow-md);
   padding: 20px 22px;
 }
 
@@ -1351,7 +1380,7 @@ h1 {
   display: block;
   height: 100%;
   border-radius: 999px;
-  background: linear-gradient(90deg, var(--cellar-2), var(--copper));
+  background: linear-gradient(90deg, var(--cellar), var(--cellar-2));
 }
 
 .hbar-value {
@@ -1817,8 +1846,9 @@ h1 {
 
 .support-card {
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: var(--radius);
   background: var(--panel);
+  box-shadow: var(--shadow-md);
   padding: 18px 20px;
 }
 
@@ -1946,8 +1976,9 @@ h1 {
 
 .admin-card {
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: var(--radius);
   background: var(--panel);
+  box-shadow: var(--shadow-md);
   padding: 18px 20px;
 }
 
