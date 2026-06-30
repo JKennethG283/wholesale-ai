@@ -1,10 +1,5 @@
-import { PlaceholderPage } from "@/components/placeholder-page";
+import { RecommendationsExplorer } from "@/components/recommendations-explorer";
 
 export default function AiRecommendationsPage() {
-  return (
-    <PlaceholderPage
-      title="AI Recommendations"
-      summary="Hybrid search, recommendation reasons, and similar-buyer signals will land here."
-    />
-  );
+  return <RecommendationsExplorer />;
 }
