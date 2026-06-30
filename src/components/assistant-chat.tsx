@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { Bot, Sparkles, User } from "lucide-react";
 import { useState } from "react";
 import {
@@ -9,7 +8,7 @@ import {
   type AssistantResponse,
 } from "@/lib/assistant";
 import { customers } from "@/lib/mock-data";
-import { navigationItems } from "@/lib/navigation";
+import { AppShell } from "@/components/app-shell";
 
 type ChatMessage =
   | { id: string; role: "user"; text: string }
@@ -34,26 +33,7 @@ export function AssistantChat() {
   }
 
   return (
-    <div className="shell">
-      <header className="site-header">
-        <div className="header-inner">
-          <Link className="brand-lockup" href="/" aria-label="LiquorOps AI home">
-            <span className="brand-mark">LO</span>
-            <span className="brand-text">
-              <strong>LiquorOps AI</strong>
-              <span>Synthetic wholesale portal</span>
-            </span>
-          </Link>
-          <nav className="primary-nav" aria-label="Primary">
-            {navigationItems.map((item) => (
-              <Link key={item.href} href={item.href}>
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      </header>
-
+    <AppShell>
       <main className="dashboard-main">
         <section className="dashboard-title-band" aria-labelledby="assistant-title">
           <div>
@@ -136,6 +116,6 @@ export function AssistantChat() {
           </section>
         </div>
       </main>
-    </div>
+    </AppShell>
   );
 }

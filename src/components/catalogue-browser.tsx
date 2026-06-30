@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { RotateCcw, Search, ShoppingCart, SlidersHorizontal } from "lucide-react";
 import { useMemo, useState } from "react";
 import {
@@ -10,7 +9,7 @@ import {
   type CatalogueProduct,
 } from "@/lib/catalogue";
 import { catalogueCategories, products, regions } from "@/lib/mock-data";
-import { navigationItems } from "@/lib/navigation";
+import { AppShell } from "@/components/app-shell";
 
 const cartStorageKey = "liquorops-cart";
 
@@ -196,26 +195,7 @@ export function CatalogueBrowser() {
   }
 
   return (
-    <div className="shell">
-      <header className="site-header">
-        <div className="header-inner">
-          <Link className="brand-lockup" href="/" aria-label="LiquorOps AI home">
-            <span className="brand-mark">LO</span>
-            <span className="brand-text">
-              <strong>LiquorOps AI</strong>
-              <span>Synthetic wholesale portal</span>
-            </span>
-          </Link>
-          <nav className="primary-nav" aria-label="Primary">
-            {navigationItems.map((item) => (
-              <Link key={item.href} href={item.href}>
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      </header>
-
+    <AppShell>
       <main className="catalogue-main">
         <section className="catalogue-title-band" aria-labelledby="catalogue-title">
           <div>
@@ -362,6 +342,6 @@ export function CatalogueBrowser() {
           </div>
         )}
       </main>
-    </div>
+    </AppShell>
   );
 }

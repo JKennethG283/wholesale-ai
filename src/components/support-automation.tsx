@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 import {
   AlertTriangle,
@@ -16,7 +15,7 @@ import {
   type WorkflowEvent,
 } from "@/lib/support-automation";
 import { customers } from "@/lib/mock-data";
-import { navigationItems } from "@/lib/navigation";
+import { AppShell } from "@/components/app-shell";
 
 const exampleIssue = "My delivery arrived late and two cases were missing.";
 
@@ -47,26 +46,7 @@ export function SupportAutomation() {
   }
 
   return (
-    <div className="shell">
-      <header className="site-header">
-        <div className="header-inner">
-          <Link className="brand-lockup" href="/" aria-label="LiquorOps AI home">
-            <span className="brand-mark">LO</span>
-            <span className="brand-text">
-              <strong>LiquorOps AI</strong>
-              <span>Synthetic wholesale portal</span>
-            </span>
-          </Link>
-          <nav className="primary-nav" aria-label="Primary">
-            {navigationItems.map((item) => (
-              <Link key={item.href} href={item.href}>
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      </header>
-
+    <AppShell>
       <main className="dashboard-main">
         <section className="dashboard-title-band" aria-labelledby="support-title">
           <div>
@@ -192,6 +172,6 @@ export function SupportAutomation() {
           </p>
         )}
       </main>
-    </div>
+    </AppShell>
   );
 }

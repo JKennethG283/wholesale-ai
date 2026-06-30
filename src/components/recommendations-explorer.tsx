@@ -5,7 +5,7 @@ import { ArrowRight, Brain, ScanSearch, Sparkles } from "lucide-react";
 import { useMemo, useState } from "react";
 import { buildRecommendations } from "@/lib/recommendations";
 import { customers } from "@/lib/mock-data";
-import { navigationItems } from "@/lib/navigation";
+import { AppShell } from "@/components/app-shell";
 
 const signalLabels: Record<string, string> = {
   lexical: "Lexical fit",
@@ -28,26 +28,7 @@ export function RecommendationsExplorer() {
     .slice(0, 6);
 
   return (
-    <div className="shell">
-      <header className="site-header">
-        <div className="header-inner">
-          <Link className="brand-lockup" href="/" aria-label="LiquorOps AI home">
-            <span className="brand-mark">LO</span>
-            <span className="brand-text">
-              <strong>LiquorOps AI</strong>
-              <span>Synthetic wholesale portal</span>
-            </span>
-          </Link>
-          <nav className="primary-nav" aria-label="Primary">
-            {navigationItems.map((item) => (
-              <Link key={item.href} href={item.href}>
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      </header>
-
+    <AppShell>
       <main className="dashboard-main">
         <section className="dashboard-title-band" aria-labelledby="recs-title">
           <div>
@@ -161,6 +142,6 @@ export function RecommendationsExplorer() {
           </section>
         </div>
       </main>
-    </div>
+    </AppShell>
   );
 }

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   Boxes,
   CheckCircle2,
@@ -14,7 +13,7 @@ import {
   type WorkflowEventType,
   type WorkflowStatus,
 } from "@/lib/workflow-log";
-import { navigationItems } from "@/lib/navigation";
+import { AppShell } from "@/components/app-shell";
 
 const typeLabel: Record<WorkflowEventType, string> = {
   "order-confirmation": "Order confirmation",
@@ -46,26 +45,7 @@ export function WorkflowLogView() {
   const log = buildWorkflowLog();
 
   return (
-    <div className="shell">
-      <header className="site-header">
-        <div className="header-inner">
-          <Link className="brand-lockup" href="/" aria-label="LiquorOps AI home">
-            <span className="brand-mark">LO</span>
-            <span className="brand-text">
-              <strong>LiquorOps AI</strong>
-              <span>Synthetic wholesale portal</span>
-            </span>
-          </Link>
-          <nav className="primary-nav" aria-label="Primary">
-            {navigationItems.map((item) => (
-              <Link key={item.href} href={item.href}>
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      </header>
-
+    <AppShell>
       <main className="dashboard-main">
         <section className="dashboard-title-band" aria-labelledby="workflow-title">
           <div>
@@ -121,6 +101,6 @@ export function WorkflowLogView() {
           </ol>
         </section>
       </main>
-    </div>
+    </AppShell>
   );
 }

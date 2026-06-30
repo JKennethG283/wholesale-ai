@@ -1,35 +1,13 @@
 import Link from "next/link";
 import { catalogueCategories, customers, products, regions } from "@/lib/mock-data";
-import {
-  architectureLayers,
-  complianceDisclaimer,
-  navigationItems,
-} from "@/lib/navigation";
+import { architectureLayers, complianceDisclaimer } from "@/lib/navigation";
+import { AppShell } from "@/components/app-shell";
 
 export default function HomePage() {
   const featuredProducts = products.slice(0, 4);
 
   return (
-    <div className="shell">
-      <header className="site-header">
-        <div className="header-inner">
-          <Link className="brand-lockup" href="/" aria-label="LiquorOps AI home">
-            <span className="brand-mark">LO</span>
-            <span className="brand-text">
-              <strong>LiquorOps AI</strong>
-              <span>Synthetic wholesale portal</span>
-            </span>
-          </Link>
-          <nav className="primary-nav" aria-label="Primary">
-            {navigationItems.map((item) => (
-              <Link key={item.href} href={item.href}>
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      </header>
-
+    <AppShell>
       <main className="home-main">
         <section className="catalogue-hero" aria-labelledby="home-title">
           <div className="hero-copy">
@@ -152,6 +130,6 @@ export default function HomePage() {
 
         <p className="disclaimer">{complianceDisclaimer}</p>
       </main>
-    </div>
+    </AppShell>
   );
 }

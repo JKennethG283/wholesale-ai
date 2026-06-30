@@ -4,31 +4,12 @@ import {
   architectureLayers,
   complianceDisclaimer,
   demoStorySteps,
-  navigationItems,
 } from "@/lib/navigation";
+import { AppShell } from "@/components/app-shell";
 
 export function ArchitectureStory() {
   return (
-    <div className="shell">
-      <header className="site-header">
-        <div className="header-inner">
-          <Link className="brand-lockup" href="/" aria-label="LiquorOps AI home">
-            <span className="brand-mark">LO</span>
-            <span className="brand-text">
-              <strong>LiquorOps AI</strong>
-              <span>Synthetic wholesale portal</span>
-            </span>
-          </Link>
-          <nav className="primary-nav" aria-label="Primary">
-            {navigationItems.map((item) => (
-              <Link key={item.href} href={item.href}>
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      </header>
-
+    <AppShell>
       <main className="dashboard-main">
         <section className="dashboard-title-band" aria-labelledby="architecture-title">
           <div>
@@ -95,6 +76,6 @@ export function ArchitectureStory() {
           <p>{complianceDisclaimer}</p>
         </div>
       </main>
-    </div>
+    </AppShell>
   );
 }

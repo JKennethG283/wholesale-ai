@@ -1,11 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { PlugZap, Sparkles, TrendingDown, TrendingUp } from "lucide-react";
 import { useMemo, useState } from "react";
 import { buildPosInsights } from "@/lib/pos-insights";
 import { customers } from "@/lib/mock-data";
-import { navigationItems } from "@/lib/navigation";
+import { AppShell } from "@/components/app-shell";
 
 export function PosWorkflow() {
   const [customerId, setCustomerId] = useState<string>(customers[0].id);
@@ -24,26 +23,7 @@ export function PosWorkflow() {
     .join(", ")}`;
 
   return (
-    <div className="shell">
-      <header className="site-header">
-        <div className="header-inner">
-          <Link className="brand-lockup" href="/" aria-label="LiquorOps AI home">
-            <span className="brand-mark">LO</span>
-            <span className="brand-text">
-              <strong>LiquorOps AI</strong>
-              <span>Synthetic wholesale portal</span>
-            </span>
-          </Link>
-          <nav className="primary-nav" aria-label="Primary">
-            {navigationItems.map((item) => (
-              <Link key={item.href} href={item.href}>
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      </header>
-
+    <AppShell>
       <main className="dashboard-main">
         <section className="dashboard-title-band" aria-labelledby="pos-title">
           <div>
@@ -207,6 +187,6 @@ export function PosWorkflow() {
           </section>
         )}
       </main>
-    </div>
+    </AppShell>
   );
 }

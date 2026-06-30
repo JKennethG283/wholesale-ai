@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   AlertTriangle,
   ArrowDownRight,
@@ -12,7 +11,7 @@ import {
   type StockRiskLevel,
 } from "@/lib/admin-analytics";
 import { buildWeeklyReport } from "@/lib/weekly-report";
-import { navigationItems } from "@/lib/navigation";
+import { AppShell } from "@/components/app-shell";
 
 const riskClass: Record<StockRiskLevel, string> = {
   High: "priority-high",
@@ -40,26 +39,7 @@ export function AdminDashboard() {
   const formatMoney = (value: number) => `$${value.toLocaleString()}`;
 
   return (
-    <div className="shell">
-      <header className="site-header">
-        <div className="header-inner">
-          <Link className="brand-lockup" href="/" aria-label="LiquorOps AI home">
-            <span className="brand-mark">LO</span>
-            <span className="brand-text">
-              <strong>LiquorOps AI</strong>
-              <span>Synthetic wholesale portal</span>
-            </span>
-          </Link>
-          <nav className="primary-nav" aria-label="Primary">
-            {navigationItems.map((item) => (
-              <Link key={item.href} href={item.href}>
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      </header>
-
+    <AppShell>
       <main className="dashboard-main">
         <section className="dashboard-title-band" aria-labelledby="admin-title">
           <div>
@@ -259,6 +239,6 @@ export function AdminDashboard() {
           </div>
         </section>
       </main>
-    </div>
+    </AppShell>
   );
 }

@@ -11,7 +11,7 @@ import {
   type MockOrderResult,
 } from "@/lib/cart";
 import { customers, products, regions } from "@/lib/mock-data";
-import { navigationItems } from "@/lib/navigation";
+import { AppShell } from "@/components/app-shell";
 
 const cartStorageKey = "liquorops-cart";
 const demoOrderDate = new Date("2026-06-30T10:00:00+10:00");
@@ -96,26 +96,7 @@ export function CartWorkflow() {
   }
 
   return (
-    <div className="shell">
-      <header className="site-header">
-        <div className="header-inner">
-          <Link className="brand-lockup" href="/" aria-label="LiquorOps AI home">
-            <span className="brand-mark">LO</span>
-            <span className="brand-text">
-              <strong>LiquorOps AI</strong>
-              <span>Synthetic wholesale portal</span>
-            </span>
-          </Link>
-          <nav className="primary-nav" aria-label="Primary">
-            {navigationItems.map((item) => (
-              <Link key={item.href} href={item.href}>
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      </header>
-
+    <AppShell>
       <main className="cart-main">
         <section className="cart-title-band" aria-labelledby="cart-title">
           <div>
@@ -308,6 +289,6 @@ export function CartWorkflow() {
           </section>
         ) : null}
       </main>
-    </div>
+    </AppShell>
   );
 }

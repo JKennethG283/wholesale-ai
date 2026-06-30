@@ -5,7 +5,7 @@ import { Sparkles, TrendingDown, TrendingUp } from "lucide-react";
 import { useMemo, useState } from "react";
 import { buildBuyerInsights } from "@/lib/buyer-analytics";
 import { customers } from "@/lib/mock-data";
-import { navigationItems } from "@/lib/navigation";
+import { AppShell } from "@/components/app-shell";
 
 function money(amount: number) {
   return new Intl.NumberFormat("en-AU", {
@@ -40,26 +40,7 @@ export function BuyerDashboard() {
     .join(", ")}`;
 
   return (
-    <div className="shell">
-      <header className="site-header">
-        <div className="header-inner">
-          <Link className="brand-lockup" href="/" aria-label="LiquorOps AI home">
-            <span className="brand-mark">LO</span>
-            <span className="brand-text">
-              <strong>LiquorOps AI</strong>
-              <span>Synthetic wholesale portal</span>
-            </span>
-          </Link>
-          <nav className="primary-nav" aria-label="Primary">
-            {navigationItems.map((item) => (
-              <Link key={item.href} href={item.href}>
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      </header>
-
+    <AppShell>
       <main className="dashboard-main">
         <section className="dashboard-title-band" aria-labelledby="dashboard-title">
           <div>
@@ -267,6 +248,6 @@ export function BuyerDashboard() {
           </section>
         </div>
       </main>
-    </div>
+    </AppShell>
   );
 }
