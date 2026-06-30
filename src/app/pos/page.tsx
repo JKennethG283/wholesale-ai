@@ -1,10 +1,5 @@
-import { PlaceholderPage } from "@/components/placeholder-page";
+import { PosWorkflow } from "@/components/pos-workflow";
 
 export default function PosPage() {
-  return (
-    <PlaceholderPage
-      title="POS Data"
-      summary="Mock POS connection, best sellers, slow movers, and category trend insights will land here."
-    />
-  );
+  return <PosWorkflow />;
 }
